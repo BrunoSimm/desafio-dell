@@ -8,5 +8,7 @@
      - >mvn clean
      - >mvn clean install 
      - >mvn package
+     
 ### Comando para executar:
-     java -jar .\target\etapa2-1.0-SNAPSHOT.jar
+- Na raiz do projeto execute o SNAPSHOT gerado na compilação:
+     - >java -jar .\target\etapa2-1.0-SNAPSHOT.jar
