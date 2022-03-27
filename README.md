@@ -5,7 +5,8 @@
    - >[Maven](https://maven.apache.org/install.html)
 ### Comandos para compilar a aplicação:
 - Na raiz do projeto execute:
-     - >mvn clean install
+     - >mvn clean
+     - >mvn clean install 
      - >mvn package
 ### Comando para executar:
      java -jar .\target\etapa2-1.0-SNAPSHOT.jar
