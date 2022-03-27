@@ -12,6 +12,8 @@ public interface IRepositorioBolsas {
                      String codigoMoeda, ModalidadePagamento modalidadePagamento);
 
     List<Bolsa> getBolsasByAnoReferencia(int ano);
+
     List<Bolsa> get3MaioresBolsas();
+
     List<Bolsa> get3MenoresBolsas();
 }

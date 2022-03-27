@@ -1,15 +1,24 @@
-import negocio.entidades.Bolsista;
-import negocio.entidades.bolsa.Bolsa;
-import negocio.entidades.bolsa.ModalidadePagamento;
+import adaptadores.console.Console;
+import adaptadores.drivers.DataDriver;
+import adaptadores.repositorios.RepositorioBolsas;
+import adaptadores.repositorios.RepositorioBolsistas;
+import negocio.repositorios.IRepositorioBolsas;
+import negocio.repositorios.IRepositorioBolsistas;
+import negocio.servicos.bolsas.BolsasServico;
+import negocio.servicos.bolsistas.BolsistasServico;
 
 public class Etapa2Application {
-    public static void main(String[] args){
-        System.out.println("MAIN");
+    public static void main(String[] args) {
+        IRepositorioBolsas repositorioBolsas = new RepositorioBolsas();
+        IRepositorioBolsistas repositorioBolsistas = new RepositorioBolsistas();
+        BolsistasServico bolsistasServico = new BolsistasServico(repositorioBolsistas);
+        BolsasServico bolsasServico = new BolsasServico(repositorioBolsas);
 
-        Bolsista b = new Bolsista("bruno", "0404102312","PUCRS");
-        Bolsa bolsa = new Bolsa(1,b,1,2022,1300,"R$", ModalidadePagamento.TUTOR);
+        DataDriver dataDriver = new DataDriver();
+        //Lê arquivo CSV e insere as linhas nos respectivos repositórios.
+        dataDriver.carregarDados(repositorioBolsas, repositorioBolsistas);
 
-        System.out.printf("Bolsista => %s | bolsa id %d", bolsa.getBolsista().getNome(), bolsa.getId());
-
+        Console console = new Console(bolsasServico, bolsistasServico);
+        console.start();
     }
 }

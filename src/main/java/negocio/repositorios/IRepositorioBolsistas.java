@@ -2,8 +2,11 @@ package negocio.repositorios;
 
 import negocio.entidades.Bolsista;
 
+import java.util.List;
+
 public interface IRepositorioBolsistas {
 
-    Bolsista createBolsista(String nome, String cpf, String entidadeEnsino);
-    Bolsista getBolsistaByNome(String nome);
+    Bolsista salvarBolsista(Bolsista bolsista);
+
+    List<Bolsista> getBolsistasByNome(String nome);
 }
