@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * Classe utilizada como "driver" de acesso ao dados do arquivo CSV.
- * Caso a fonte de dados for alterada se faz necessário apenas modificação da implementação desta classe, preservando o restante da aplicação.
+ * Caso a fonte de dados for alterada se faz necessário apenas a modificação da implementação desta classe, preservando o restante da aplicação.
  */
 public class DataDriver {
 
@@ -80,9 +80,7 @@ public class DataDriver {
                     bolsa.setAnoReferencia(Integer.parseInt(linha[contador]));
                     contador++;
                 }
-                case 5, 6, 7 -> {
-                    contador++;
-                }
+                case 5, 6, 7 -> contador++;
                 case 8 -> {
                     bolsa.setModalidadePagamento(this.getModalidadePagamentoDeUmaString(linha[contador]));
                     contador++;

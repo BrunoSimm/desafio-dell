@@ -20,7 +20,7 @@ public class BolsistasServico {
         if (bolsista.size() == 1) {
             Bolsista bolsistaCodificado = bolsista.get(0).clone(); //cria um clone do objeto, mantendo o objeto original intacto.
             bolsistaCodificado.setNome(this.codificarNome(bolsistaCodificado.getNome()));
-            bolsista.set(0,bolsistaCodificado);
+            bolsista.set(0, bolsistaCodificado);
         }
         return bolsista;
     }
@@ -36,7 +36,7 @@ public class BolsistasServico {
         }
 
         //Passo 1: Inverter primeiro e ultimo character do nome.
-        Collections.swap(listaLetras, 0, listaLetras.size() - 1 ); //https://www.delftstack.com/pt/howto/java/the-swap-method-in-java/
+        Collections.swap(listaLetras, 0, listaLetras.size() - 1); //https://www.delftstack.com/pt/howto/java/the-swap-method-in-java/
 
         //Passo 2: Realiza a troca de posição de elementos.
         // Troca-se o 1 elemento com o último, o 2 com o penúltimo, o 3 com o antepenúltimo e assim sucessivamente.
@@ -46,14 +46,14 @@ public class BolsistasServico {
             int finalLista = listaLetras.size() - 1;
 
             //Par
-            if(nome.length() % 2 == 0){
-                while (finalLista - inicioLista >= 1){
+            if (nome.length() % 2 == 0) {
+                while (finalLista - inicioLista >= 1) {
                     Collections.swap(listaLetras, inicioLista, finalLista);
                     inicioLista++;
                     finalLista--;
                 }
             } else { //Impar
-                while (finalLista - inicioLista > 2){
+                while (finalLista - inicioLista > 2) {
                     Collections.swap(listaLetras, inicioLista, finalLista);
                     inicioLista++;
                     finalLista--;
@@ -65,10 +65,10 @@ public class BolsistasServico {
                 int ascii = (int) listaLetras.get(i).charAt(0); //Converte o character para seu respective número na tabela ASCII.
 
                 //Se for a letra Z então converte para A.
-                if(ascii == 90){
+                if (ascii == 90) {
                     listaLetras.set(i, "A");
-                } else if(ascii == 32){ //Character referente ao espaço, não modifica.
-
+                } else if (ascii == 32) { //Character referente ao espaço, não modifica.
+                    listaLetras.set(i, " ");
                 } else {
                     ascii++; //Move uma unidade na tabela ASCII (ex: A -> B)
                     listaLetras.set(i, String.valueOf(((char) ascii))); //Converte o número da tabela ASCII para char e substitui no nome.

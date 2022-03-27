@@ -11,7 +11,7 @@ public class Bolsista implements Cloneable {
     private String nome;
     private String cpf;
     private String entidadeEnsino;
-    private Set<Bolsa> bolsas;
+    private final Set<Bolsa> bolsas;
 
     public Bolsista(String nome, String cpf, String entidadeEnsino) {
         this.nome = nome;
@@ -24,17 +24,13 @@ public class Bolsista implements Cloneable {
         this.bolsas = new HashSet<Bolsa>();
     }
 
-    public Set<Bolsa> getBolsas() {
-        return bolsas;
-    }
-
     public Bolsa getBolsaMaisRecente() {
-        if(this.bolsas.size() > 0){
+        if (this.bolsas.size() > 0) {
             int anoMaisRecente = 0;
             int mesMaisRecente = 0;
             Bolsa bolsaMaisRecente = null;
-            for (Bolsa bolsa: this.bolsas) {
-                if(bolsa.getAnoReferencia() > anoMaisRecente && bolsa.getMesReferencia() > mesMaisRecente) {
+            for (Bolsa bolsa : this.bolsas) {
+                if (bolsa.getAnoReferencia() > anoMaisRecente && bolsa.getMesReferencia() > mesMaisRecente) {
                     bolsaMaisRecente = bolsa;
                 }
             }
@@ -84,15 +80,10 @@ public class Bolsista implements Cloneable {
         return Objects.hash(nome, cpf, entidadeEnsino);
     }
 
-    public void setBolsas(Set<Bolsa> bolsas) {
-        this.bolsas = bolsas;
-    }
-
     @Override
     public Bolsista clone() {
         try {
-            Bolsista clone = (Bolsista) super.clone();
-            return clone;
+            return (Bolsista) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }

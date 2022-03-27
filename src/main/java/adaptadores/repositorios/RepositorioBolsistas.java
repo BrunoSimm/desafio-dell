@@ -8,6 +8,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Classe que possui responsabilidade de fazer a leitura e resposta de acesso a dados referentes a Bolsistas.
+ * Implementa a interface IRepositorioBolsistas definida na camada de negócio.
+ * Camadas inferiores não dependem desta implementação e sim da interface.
+ */
 public class RepositorioBolsistas implements IRepositorioBolsistas {
 
     private final Set<Bolsista> bolsistas;
@@ -25,9 +30,7 @@ public class RepositorioBolsistas implements IRepositorioBolsistas {
     @Override
     public List<Bolsista> getBolsistasByNome(String nome) {
         return bolsistas.stream()
-                .filter((Bolsista bolsista) -> {
-                    return bolsista.getNome().contains(nome.toUpperCase());
-                })
+                .filter((Bolsista bolsista) -> bolsista.getNome().contains(nome.toUpperCase()))
                 .collect(Collectors.toList());
     }
 }

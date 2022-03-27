@@ -35,7 +35,7 @@ public class BolsasServico {
         }
         Bolsa bolsaZero = bolsas.get(0); //Recuperando a primeira bolsa para utilizar como referência 'inicial'.
         for (Bolsa bolsa : bolsas) {
-            //Caso exista uma bolsa com mes de referencia menor, então esta será a 'bolsa zero'.
+            //Caso exista uma bolsa com mes de referência menor, então esta será a 'bolsa zero'.
             if (bolsa.getMesReferencia() < bolsaZero.getMesReferencia()) {
                 bolsaZero = bolsa;
             }

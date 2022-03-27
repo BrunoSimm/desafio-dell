@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Classe que possui responsabilidade de fazer a leitura e resposta de acesso a dados referentes a Bolsas.
+ * Implementa a interface IRepositorioBolsas definida na camada de negócio.
+ * Camadas inferiores não dependem desta implementação e sim da interface.
+ */
 public class RepositorioBolsas implements IRepositorioBolsas {
 
     private final List<Bolsa> bolsas;
@@ -27,9 +32,7 @@ public class RepositorioBolsas implements IRepositorioBolsas {
     @Override
     public List<Bolsa> getBolsasByAnoReferencia(int ano) {
         return bolsas.stream()
-                .filter((Bolsa bolsa) -> {
-                    return bolsa.getAnoReferencia() == ano;
-                })
+                .filter((Bolsa bolsa) -> bolsa.getAnoReferencia() == ano)
                 .collect(Collectors.toList());
     }
 

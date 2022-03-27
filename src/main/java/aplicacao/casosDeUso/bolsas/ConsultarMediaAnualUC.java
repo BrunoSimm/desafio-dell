@@ -4,7 +4,7 @@ import negocio.servicos.bolsas.BolsasServico;
 
 public class ConsultarMediaAnualUC {
 
-    private BolsasServico bolsasServico;
+    private final BolsasServico bolsasServico;
 
     public ConsultarMediaAnualUC(BolsasServico bolsasServico) {
         this.bolsasServico = bolsasServico;

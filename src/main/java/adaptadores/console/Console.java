@@ -15,12 +15,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+/**
+ * Classe responsável por realizar a interação com o usuário através do console.
+ * Realiza validações, inputs e apresentação de resultados dos casos de uso da aplicação.
+ */
 public class Console {
-    String resetFonte = "\u001B[0m";
-    String fonteAmarela = "\u001B[33m";
-    String fonteVerde = "\u001B[42m";
-    String fonteVermelha = "\u001B[41m";
-    String fonteAzul = "\u001B[46m";
+    final String resetFonte = "\u001B[0m";
+    final String fonteAmarela = "\u001B[33m";
+    final String fonteVerde = "\u001B[42m";
+    final String fonteVermelha = "\u001B[41m";
+    final String fonteAzul = "\u001B[46m";
 
     private final Scanner opcaoInput = new Scanner(System.in);
     private final BolsasServico bolsasServico;
@@ -34,7 +38,7 @@ public class Console {
     public void start() {
         System.out.println(this.fonteAzul + "CAPES - Indicadores de Bolsas, Auxilios" +
                 " e Projetos da DED/CAPES 2013 a 2016," +
-                "Bolsistas da Universidade Aberta do Brasil."+ this.resetFonte+"\n");
+                "Bolsistas da Universidade Aberta do Brasil." + this.resetFonte + "\n");
         int opcao = 0;
         while (opcao != 5) {
             System.out.println(this.fonteAzul + "ESCOLHA UMA DAS SEGUINTES OPCOES DE CONSULTA:" + this.resetFonte);
@@ -52,7 +56,7 @@ public class Console {
                     this.executarOpcao(opcao);
                 }
             } catch (InputMismatchException e) {
-                System.out.println(this.fonteVermelha + "Opção inválida, tente novamente." + this.resetFonte+"\n");
+                System.out.println(this.fonteVermelha + "Opção inválida, tente novamente." + this.resetFonte + "\n");
                 opcao = 0;
                 this.opcaoInput.nextLine();
 
@@ -77,8 +81,8 @@ public class Console {
         try {
             System.out.print("DIGITE UM ANO PARA BUSCAR: ");
             int ano = this.opcaoInput.nextInt();
-            ConsultarBolsaZeroUC consultarBolsaZeroUC = new ConsultarBolsaZeroUC(bolsasServico, ano);
-            Optional<Bolsa> bolsaZero = consultarBolsaZeroUC.run();
+            ConsultarBolsaZeroUC consultarBolsaZeroUC = new ConsultarBolsaZeroUC(bolsasServico);
+            Optional<Bolsa> bolsaZero = consultarBolsaZeroUC.run(ano);
 
             if (bolsaZero != null && bolsaZero.isPresent()) {
                 Bolsa bolsa = bolsaZero.get();
@@ -90,11 +94,11 @@ public class Console {
                         bolsa.getCodigoMoeda(), bolsa.getValorBolsa()
                 );
             } else {
-                System.out.println(fonteAmarela + "Nenhuma bolsa encontrada neste ano!" + resetFonte+"\n");
+                System.out.println(fonteAmarela + "Nenhuma bolsa encontrada neste ano!" + resetFonte + "\n");
             }
         } catch (InputMismatchException e) {
             this.opcaoInput.nextLine();
-            System.out.println("\n"+this.fonteVermelha + "Ano invalido. Digite um numero inteiro." + this.resetFonte);
+            System.out.println("\n" + this.fonteVermelha + "Ano invalido. Digite um numero inteiro." + this.resetFonte);
         }
     }
 
@@ -109,7 +113,7 @@ public class Console {
 
             //Encontrou mais de um bolsista com o nome inserido.
             if (bolsista.size() > 1) {
-                String novoNome = null;
+                String novoNome;
                 do {
                     System.out.println(this.fonteAmarela + "Existem mais de um bolsista com o nome informado!\n" + this.resetFonte + "Por favor, informe um nome com mais detalhes ou 'SAIR' para voltar:");
                     novoNome = opcaoInput.nextLine();
@@ -121,7 +125,7 @@ public class Console {
 
             //Não encontrou nenhum bolsista com o nome inserido.
             if (bolsista.size() == 0) {
-                System.out.println(this.fonteAmarela + "Nenhum bolsista encontrado com este nome!" + this.resetFonte+"\n");
+                System.out.println(this.fonteAmarela + "Nenhum bolsista encontrado com este nome!" + this.resetFonte + "\n");
             }
 
             //Encontrou um bolsista com o nome inserido. Neste caso, nome do bolsista virá codificado.
@@ -149,9 +153,9 @@ public class Console {
 
             //Encontrou um bolsista com o nome inserido. Neste caso, nome do bolsista virá codificado.
             if (media > 0.0) {
-                System.out.printf("\n" + this.fonteVerde + "MEDIA ANUAL DAS BOLSAS DE %d: R$ %.2f"+ this.resetFonte+ "\n\n", ano, media );
+                System.out.printf("\n" + this.fonteVerde + "MEDIA ANUAL DAS BOLSAS DE %d: R$ %.2f" + this.resetFonte + "\n\n", ano, media);
             } else {
-                System.out.println("\n" + this.fonteAmarela + "NAO FORAM ENCONTRADAS BOLSAS NESTE ANO!" + this.resetFonte+"\n");
+                System.out.println("\n" + this.fonteAmarela + "NAO FORAM ENCONTRADAS BOLSAS NESTE ANO!" + this.resetFonte + "\n");
             }
         } catch (InputMismatchException e) {
             this.opcaoInput.nextLine();
@@ -166,23 +170,23 @@ public class Console {
         ConsultarRankingMenoresValoresDeBolsaUC consultarRankingMenoresValoresDeBolsaUC = new ConsultarRankingMenoresValoresDeBolsaUC(bolsasServico);
         List<Bolsa> top3MenoresBolsas = consultarRankingMenoresValoresDeBolsaUC.run();
 
-        if(top3MenoresBolsas == null || top3MenoresBolsas == null){
+        if (top3MenoresBolsas == null || top3MaioresBolsas == null) {
             System.out.println(this.fonteVermelha + "Nao existe bolsas cadastradas no sistema." + this.resetFonte);
         } else {
-            System.out.println(this.fonteVerde + "TRES ALUNOS COM AS MAIORES BOLSAS:" +this.resetFonte);
+            System.out.println(this.fonteVerde + "TRES ALUNOS COM AS MAIORES BOLSAS:" + this.resetFonte);
             int contador = 1;
             for (Bolsa bolsa : top3MaioresBolsas) {
-                System.out.printf("\t%d %s | Ano: %d | Entidade de Ensino: %s |"+this.fonteAmarela+" Valor da Bolsa: %s %.2f\n"+this.resetFonte,
+                System.out.printf("\t%d %s | Ano: %d | Entidade de Ensino: %s |" + this.fonteAmarela + " Valor da Bolsa: %s %.2f\n" + this.resetFonte,
                         contador, bolsa.getBolsista().getNome(), bolsa.getAnoReferencia(), bolsa.getBolsista().getEntidadeEnsino(),
                         bolsa.getCodigoMoeda(), bolsa.getValorBolsa()
                 );
                 contador++;
             }
 
-            System.out.println("\n"+this.fonteVerde + "TRES ALUNOS COM AS MENORES BOLSAS:" +this.resetFonte);
+            System.out.println("\n" + this.fonteVerde + "TRES ALUNOS COM AS MENORES BOLSAS:" + this.resetFonte);
             contador = 1;
             for (Bolsa bolsa : top3MenoresBolsas) {
-                System.out.printf("\t%d %s | Ano: %d | Entidade de Ensino: %s |"+this.fonteAmarela+" Valor da Bolsa: %s %.2f\n"+this.resetFonte,
+                System.out.printf("\t%d %s | Ano: %d | Entidade de Ensino: %s |" + this.fonteAmarela + " Valor da Bolsa: %s %.2f\n" + this.resetFonte,
                         contador, bolsa.getBolsista().getNome(), bolsa.getAnoReferencia(), bolsa.getBolsista().getEntidadeEnsino(),
                         bolsa.getCodigoMoeda(), bolsa.getValorBolsa()
                 );
