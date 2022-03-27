@@ -32,15 +32,15 @@ public class Console {
     }
 
     public void start() {
-        System.out.println(this.fonteAzul + "CAPES - Indicadores de Bolsas, Auxílios" +
+        System.out.println(this.fonteAzul + "CAPES - Indicadores de Bolsas, Auxilios" +
                 " e Projetos da DED/CAPES 2013 a 2016," +
                 "Bolsistas da Universidade Aberta do Brasil."+ this.resetFonte+"\n");
         int opcao = 0;
         while (opcao != 5) {
-            System.out.println(this.fonteAzul + "ESCOLHA UMA DAS SEGUINTES OPÇÕES DE CONSULTA:" + this.resetFonte);
+            System.out.println(this.fonteAzul + "ESCOLHA UMA DAS SEGUINTES OPCOES DE CONSULTA:" + this.resetFonte);
             System.out.println("\t1 -> Consultar Bolsa Zero");
             System.out.println("\t2 -> Consultar Bolsista por Nome");
-            System.out.println("\t3 -> Consultar Médial Anual dos Valores das Bolsas");
+            System.out.println("\t3 -> Consultar Medial Anual dos Valores das Bolsas");
             System.out.println("\t4 -> Consultar Ranking de Valores de Bolsa");
             System.out.println("\t5 -> Terminar Programa");
 
@@ -94,7 +94,7 @@ public class Console {
             }
         } catch (InputMismatchException e) {
             this.opcaoInput.nextLine();
-            System.out.println("\n"+this.fonteVermelha + "Ano inválido. Digite um número inteiro." + this.resetFonte);
+            System.out.println("\n"+this.fonteVermelha + "Ano invalido. Digite um numero inteiro." + this.resetFonte);
         }
     }
 
@@ -135,7 +135,7 @@ public class Console {
             }
         } catch (InputMismatchException e) {
             this.opcaoInput.nextLine();
-            System.out.println(this.fonteVermelha + "Nome inválido, digite um nome contendo letras." + this.resetFonte);
+            System.out.println(this.fonteVermelha + "Nome invalido, digite um nome contendo letras." + this.resetFonte);
         }
     }
 
@@ -151,11 +151,11 @@ public class Console {
             if (media > 0.0) {
                 System.out.printf("\n" + this.fonteVerde + "MEDIA ANUAL DAS BOLSAS DE %d: R$ %.2f"+ this.resetFonte+ "\n\n", ano, media );
             } else {
-                System.out.println("\n" + this.fonteAmarela + "NÃO FORAM ENCONTRADAS BOLSAS NESTE ANO!" + this.resetFonte+"\n");
+                System.out.println("\n" + this.fonteAmarela + "NAO FORAM ENCONTRADAS BOLSAS NESTE ANO!" + this.resetFonte+"\n");
             }
         } catch (InputMismatchException e) {
             this.opcaoInput.nextLine();
-            System.out.println("\n" + this.fonteVermelha + "Ano inválido. Digite um número inteiro." + this.resetFonte);
+            System.out.println("\n" + this.fonteVermelha + "Ano invalido. Digite um numero inteiro." + this.resetFonte);
         }
     }
 
@@ -167,22 +167,22 @@ public class Console {
         List<Bolsa> top3MenoresBolsas = consultarRankingMenoresValoresDeBolsaUC.run();
 
         if(top3MenoresBolsas == null || top3MenoresBolsas == null){
-            System.out.println(this.fonteVermelha + "Não existe bolsas cadastradas no sistema." + this.resetFonte);
+            System.out.println(this.fonteVermelha + "Nao existe bolsas cadastradas no sistema." + this.resetFonte);
         } else {
-            System.out.println(this.fonteVerde + "TRÊS ALUNOS COM AS MAIORES BOLSAS:" +this.resetFonte);
+            System.out.println(this.fonteVerde + "TRES ALUNOS COM AS MAIORES BOLSAS:" +this.resetFonte);
             int contador = 1;
             for (Bolsa bolsa : top3MaioresBolsas) {
-                System.out.printf("\t%d = Nome: %s | Ano: %d | Entidade de Ensino: %s |"+this.fonteAmarela+" Valor da Bolsa: %s %.2f\n"+this.resetFonte,
+                System.out.printf("\t%d %s | Ano: %d | Entidade de Ensino: %s |"+this.fonteAmarela+" Valor da Bolsa: %s %.2f\n"+this.resetFonte,
                         contador, bolsa.getBolsista().getNome(), bolsa.getAnoReferencia(), bolsa.getBolsista().getEntidadeEnsino(),
                         bolsa.getCodigoMoeda(), bolsa.getValorBolsa()
                 );
                 contador++;
             }
 
-            System.out.println("\n"+this.fonteVerde + "TRÊS ALUNOS COM AS MENORES BOLSAS:" +this.resetFonte);
+            System.out.println("\n"+this.fonteVerde + "TRES ALUNOS COM AS MENORES BOLSAS:" +this.resetFonte);
             contador = 1;
             for (Bolsa bolsa : top3MenoresBolsas) {
-                System.out.printf("\t%d = Nome: %s | Ano: %d | Entidade de Ensino: %s |"+this.fonteAmarela+" Valor da Bolsa: %s %.2f\n"+this.resetFonte,
+                System.out.printf("\t%d %s | Ano: %d | Entidade de Ensino: %s |"+this.fonteAmarela+" Valor da Bolsa: %s %.2f\n"+this.resetFonte,
                         contador, bolsa.getBolsista().getNome(), bolsa.getAnoReferencia(), bolsa.getBolsista().getEntidadeEnsino(),
                         bolsa.getCodigoMoeda(), bolsa.getValorBolsa()
                 );
