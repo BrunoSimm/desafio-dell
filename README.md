@@ -1,11 +1,11 @@
-DECISÕES ATÉ O MOMENTO:
-    - projeto java com maven para utilizar o leitor de CSV e o junit
-    - ENUMS para trabalhar com as modalidades de pagamento das bolsas.
-    - FOI UTILIZADO SET NOS REPOSITÓRIOS PARA EVITAR DUPLICIDADE DE BOLSISTAS.
-    - No caso de USO 2, é retornado o valor da bolsa mais atual de um bolsista.
+## Projeto destinado à resolução do desafio do Programa Dell IT Academy — Edição #15
 
-
-TODO -> 
- - AO CODIFICAR NOME, EVITAR DE SALVAR O NOME CODIFICADO NO OBJETO.
- - REMOVER VERIFICAÇÃO DOS ENUMS NO DATA DRIVER!!!!!
- - tratar acentos nos nomes no INPUT (Provavel algo de codificação)
+### Requisitos para executar o software:
+   - >[Java 17](https://jdk.java.net/17/)
+   - >[Maven](https://maven.apache.org/install.html)
+### Comandos para compilar a aplicação:
+- Na raiz do projeto execute:
+     - >mvn clean install
+     - >mvn package
+### Comando para executar:
+     java -jar .\target\etapa2-1.0-SNAPSHOT.jar
