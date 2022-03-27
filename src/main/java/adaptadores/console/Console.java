@@ -149,7 +149,7 @@ public class Console {
 
             //Encontrou um bolsista com o nome inserido. Neste caso, nome do bolsista virá codificado.
             if (media > 0.0) {
-                System.out.printf("\n" + this.fonteVerde + "MEDIA ANUAL DAS BOLSAS DE %d: R$ %.2f"+ this.resetFonte, ano, media);
+                System.out.printf("\n" + this.fonteVerde + "MEDIA ANUAL DAS BOLSAS DE %d: R$ %.2f"+ this.resetFonte+ "\n\n", ano, media );
             } else {
                 System.out.println("\n" + this.fonteAmarela + "NÃO FORAM ENCONTRADAS BOLSAS NESTE ANO!" + this.resetFonte+"\n");
             }

@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Bolsista {
+public class Bolsista implements Cloneable {
 
     private String nome;
     private String cpf;
@@ -82,5 +82,19 @@ public class Bolsista {
     @Override
     public int hashCode() {
         return Objects.hash(nome, cpf, entidadeEnsino);
+    }
+
+    public void setBolsas(Set<Bolsa> bolsas) {
+        this.bolsas = bolsas;
+    }
+
+    @Override
+    public Bolsista clone() {
+        try {
+            Bolsista clone = (Bolsista) super.clone();
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

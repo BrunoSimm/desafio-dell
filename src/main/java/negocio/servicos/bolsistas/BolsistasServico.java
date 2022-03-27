@@ -18,7 +18,9 @@ public class BolsistasServico {
         List<Bolsista> bolsista = this.iRepositorioBolsistas.getBolsistasByNome(nome);
 
         if (bolsista.size() == 1) {
-            bolsista.get(0).setNome(this.codificarNome(bolsista.get(0).getNome()));
+            Bolsista bolsistaCodificado = bolsista.get(0).clone(); //cria um clone do objeto, mantendo o objeto original intacto.
+            bolsistaCodificado.setNome(this.codificarNome(bolsistaCodificado.getNome()));
+            bolsista.set(0,bolsistaCodificado);
         }
         return bolsista;
     }
